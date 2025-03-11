@@ -20,10 +20,11 @@ function Book(title, author, pages, read) {
     }
   }
 
-
 function addBookToLibrary (title, author, pages, read) {
   const book = new Book(title, author, pages, read);
   myLibrary.push(book);
+
+  displayLibrary(myLibrary);
 }
 
 addBookToLibrary("ReadyPlayerOne", "Jack Johnson", 297, "not read yet");
@@ -37,14 +38,37 @@ function createGrid (height, width){
   container.style.gridTemplateRows = `repeat(${height}, 1fr)`;
 }
 
-function displayLibrary () {
+function displayLibrary(array) {  //Grid
 
   if (!Array.isArray(myLibrary)) {
     console.error("myLibrary is not an array!");
     return;
 }
 
-  container.innerHTML = ""; // Vide la grille pour éviter la superposition
+  container.innerHTML = "";
+
+
+    const library = document.createElement("div");
+    library.textContent = "MY LIBRARY";
+    library.style.fontWeight = "bold";
+    library.style.border = "1px solid black";
+    library.style.padding = "10px";
+    library.style.textAlign = "center";
+    library.style.alignContent = "center";
+    library.style.backgroundColor = "darkblue";
+    library.style.color = "white";
+    container.appendChild(library);
+
+    library.style.gridColumn = "1 / span 4";
+
+    const newbook = document.createElement("button");
+    newbook.classList.add("newbook");
+    newbook.textContent = "Add New Book";
+    newbook.style.fontWeight = "bold";
+    newbook.style.gridColumn = "5 / span 1";
+  
+    container.appendChild(newbook);
+
 
     const headers = ["Title", "Author", "Pages", "Read", "ID"];
     headers.forEach(headerText => {
@@ -55,7 +79,7 @@ function displayLibrary () {
       header.style.padding = "10px";
       header.style.textAlign = "center";
       header.style.alignContent = "center";
-      header.style.backgroundColor = "darkblue";
+      header.style.backgroundColor = "blue";
       header.style.color = "white";
       container.appendChild(header);
     })
@@ -75,7 +99,17 @@ function displayLibrary () {
       });
     });
 
-    createGrid(myLibrary.length + 1, 5);
+    createGrid(myLibrary.length + 2, 5);
   }
 
-displayLibrary();
+
+//BUTTON - ADD NEW BOOK
+
+const add = document.querySelector('.newbook');
+add.addEventListener('click', function () {
+  // addBookToLibrary("Moby Dick", "Henry Cavill", 2900, "read");
+
+  const form = document.createElement('form');
+  container.appendChild(form);
+})
+
