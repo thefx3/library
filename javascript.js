@@ -8,7 +8,6 @@ container.style.border = '2px solid black';
 container.style.padding = '10px';
 
 
-
 const myLibrary = [];
 
 function Book(title, author, pages, read) {
@@ -63,6 +62,18 @@ function displayLibrary(array) {  //Grid
 
     library.style.gridColumn = "1 / span 4";
 
+    const newbook = document.createElement("button");
+    newbook.classList.add(".newbook");
+    newbook.textContent = "Add New Book";
+    newbook.style.gridColumn = "5 / span 1";
+    newbook.style.gridRow = "1";
+    container.appendChild(newbook);
+
+    newbook.addEventListener('click', function() {
+      dialog.showModal();
+    });
+
+
     const headers = ["Title", "Author", "Pages", "Read", "ID"];
     headers.forEach(headerText => {
       const header = document.createElement("div");
@@ -95,31 +106,33 @@ function displayLibrary(array) {  //Grid
     createGrid(myLibrary.length + 2, 5);
   }
 
-
-//BUTTON - ADD NEW BOOK
-const container2 = document.createElement('div');
-body.appendChild(container2);
-const newbook = document.createElement("button");
-newbook.classList.add("newbook");
-newbook.textContent = "Add New Book";
-newbook.style.fontWeight = "bold";
-newbook.style.gridColumn = "5 / span 1";
-newbook.style.gridRow = "1";
-
-container.appendChild(newbook);
-
-const addButton = document.querySelector('.newbook');
 const dialog = document.querySelector('dialog');
 const cancelBtn = dialog.querySelector("#cancel");
 const confirmBtn = dialog.querySelector("#id");
-
-addButton.addEventListener('click', function() {
-  dialog.showModal();
-});
-
 
 cancelBtn.addEventListener("click", (e) => {
   e.preventDefault();
   dialog.close();
 })
 
+dialog.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  const title = document.getElementById("title").value.trim();
+  const author = document.getElementById("author").value.trim();
+  const pages = document.getElementById("pages").value.trim();
+  const read = document.querySelectorAll(".read").checked;
+
+  const id = document.getElementById("#id");
+
+
+
+  if (!title || !author || !pages) {
+      alert("Please fill in all fields.");
+      return;
+  }
+
+  addBookToLibrary(title, author, pages, read);
+
+  dialog.close();
+})
