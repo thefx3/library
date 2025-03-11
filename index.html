@@ -11,6 +11,53 @@
 
 <body>
 
+    <dialog> 
+        
+        <form method="dialog">
+ 
+        <legend>Add a new book</legend>
+      
+        <div class="form-row">
+            <label for="title">Title</label>
+            <input type="text" id="title" name="title" minlength="3" required>
+            <span></span>
+        </div>
+
+        <div class="form-row">
+            <label for="author">Author</label>
+            <input type="text" id="author" name="author" required>
+            <span></span>
+        </div>
+
+        <div class="form-row">
+            <label for="pages">Pages</label>
+            <input type="text" id="pages" name="pages" required>
+            <span></span>
+        </div>
+
+        <div class="form-row">
+            <label for="read">Read</label>
+            <input type="checkbox" id="read" name="read" required>
+            <span></span>
+        </div>
+
+        <div class="form-row">
+            <label for="id">ID</label>
+            <input type="text" id="id" name="id" value="crypto.randomUUID()">
+            <span></span>
+        </div>
+
+
+        <div>
+
+            <button value="cancel" formmethod="dialog" id="cancel">Cancel</button>
+            <button id="add" value="default">Add the book</button>
+        </div>
+      
+        </form>
+      
+    </dialog>
+
 
 </body>
 <script src="javascript.js"></script>
