@@ -7,6 +7,8 @@ container.style.margin = '20px';
 container.style.border = '2px solid black';
 container.style.padding = '10px';
 
+
+
 const myLibrary = [];
 
 function Book(title, author, pages, read) {
@@ -61,15 +63,6 @@ function displayLibrary(array) {  //Grid
 
     library.style.gridColumn = "1 / span 4";
 
-    const newbook = document.createElement("button");
-    newbook.classList.add("newbook");
-    newbook.textContent = "Add New Book";
-    newbook.style.fontWeight = "bold";
-    newbook.style.gridColumn = "5 / span 1";
-  
-    container.appendChild(newbook);
-
-
     const headers = ["Title", "Author", "Pages", "Read", "ID"];
     headers.forEach(headerText => {
       const header = document.createElement("div");
@@ -104,12 +97,65 @@ function displayLibrary(array) {  //Grid
 
 
 //BUTTON - ADD NEW BOOK
+const container2 = document.createElement('div');
+body.appendChild(container2);
+const newbook = document.createElement("button");
+newbook.classList.add("newbook");
+newbook.textContent = "Add New Book";
+newbook.style.fontWeight = "bold";
+newbook.style.gridColumn = "5 / span 1";
+newbook.style.gridRow = "1";
 
-const add = document.querySelector('.newbook');
-add.addEventListener('click', function () {
-  // addBookToLibrary("Moby Dick", "Henry Cavill", 2900, "read");
+container.appendChild(newbook);
 
-  const form = document.createElement('form');
-  container.appendChild(form);
-})
+
+// add.addEventListener('click', function () {
+
+//   const dialog = document.createElement("dialog");
+//   dialog.classList.add('dialog');
+//   container2.appendChild(dialog);
+//   const form = document.createElement('form');
+//   dialog.appendChild(form);
+//   const legend = document.createElement("legend");
+//   legend.textContent = "Add a new book";
+//   form.appendChild(legend);
+
+//   const labels = ["Title", "Author", "Pages", "Read", "ID"];
+
+//   labels.forEach(label => {
+//     const div = document.createElement("div");
+//     const label = document.createElement("label");
+//     label.setAttribute("for",labelText.toLowerCase());
+//     label.textContent = labelText;
+
+//     const input = document.createElement("input");
+//     input.setAttribute("id", labelText.toLowerCase());
+//     input.setAttribute("name", labelText.toLowerCase());
+
+//     div.appendChild(label);
+//     div.appendChild(input);
+//     form.appendChild(div);
+//   });
+
+//   const buttonDiv = document.createElement("div");
+
+//   const cancelButton = document.createElement("button");
+//   cancelButton.textContent = "Cancel";
+//   cancelButton.setAttribute("formmethod", "dialog");
+
+//   const confirmButton = document.createElement("button");
+//   confirmButton.textContent = "Confirm";
+//   confirmButton.setAttribute("type", "submit");
+
+//   buttonDiv.appendChild(cancelButton);
+//   buttonDiv.appendChild(confirmButton);
+//   form.appendChild(buttonDiv);
+
+//   const openButton = document.createElement("button");
+//   openButton.textContent = "Add new book";
+//   openButton.addEventListener("click", () => dialog.showModal());
+
+//   container2.appendChild(openButton);
+
+// });
 
