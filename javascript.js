@@ -56,7 +56,7 @@ function displayLibrary(array) {  //Grid
     library.style.padding = "10px";
     library.style.textAlign = "center";
     library.style.alignContent = "center";
-    library.style.backgroundColor = "darkblue";
+    library.style.backgroundColor = "darkred";
     library.style.color = "white";
     container.appendChild(library);
 
@@ -83,7 +83,7 @@ function displayLibrary(array) {  //Grid
       header.style.padding = "10px";
       header.style.textAlign = "center";
       header.style.alignContent = "center";
-      header.style.backgroundColor = "blue";
+      header.style.backgroundColor = "darkblue";
       header.style.color = "white";
       container.appendChild(header);
     })
@@ -110,6 +110,7 @@ const dialog = document.querySelector('dialog');
 const cancelBtn = dialog.querySelector("#cancel");
 const confirmBtn = dialog.querySelector("#id");
 
+
 cancelBtn.addEventListener("click", (e) => {
   e.preventDefault();
   dialog.close();
@@ -121,10 +122,7 @@ dialog.addEventListener("submit", (event) => {
   const title = document.getElementById("title").value.trim();
   const author = document.getElementById("author").value.trim();
   const pages = document.getElementById("pages").value.trim();
-  const read = document.querySelectorAll(".read").checked;
-
-  const id = document.getElementById("#id");
-
+  const read = document.querySelector("input[name=choice-radio]:checked").value;
 
 
   if (!title || !author || !pages) {

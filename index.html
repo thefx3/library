@@ -18,26 +18,26 @@
         <legend>Add a new book</legend>
       
         <div class="form-row">
-            <label for="title">Title</label>
+            <label for="title" class="criteria">Title</label>
             <input type="text" id="title" name="title" minlength="3" required>
             <span></span>
         </div>
 
         <div class="form-row">
-            <label for="author">Author</label>
+            <label for="author" class="criteria">Author</label>
             <input type="text" id="author" name="author" required>
             <span></span>
         </div>
 
         <div class="form-row">
-            <label for="pages">Pages</label>
+            <label for="pages" class="criteria">Pages</label>
             <input type="text" id="pages" name="pages" required>
             <span></span>
         </div>
 
         <div class="form-row">
-            <label for="read">Read</label>
-            <div>
+            <label for="read" class="criteria">Read</label>
+            <div class="radio">
                 <label>
                   <input type="radio" name="choice-radio" class="read" value="Read" required>
                   Yes
@@ -50,15 +50,14 @@
             <span></span>
         </div>
 
-        <div class="form-row">
+        <!-- <div class="form-row">
             <label for="id">ID</label>
             <input type="text" id="id" name="id">
             <span></span>
-        </div>
+        </div> -->
 
 
-        <div>
-
+        <div class="button">
             <button value="cancel" formmethod="dialog" id="cancel">Cancel</button>
             <button id="add" value="default">Add the book</button>
         </div>

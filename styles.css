@@ -1,12 +1,108 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Roboto", "Arial";
+}
+
 ::backdrop {
     background-image: linear-gradient(
       40deg,
-      rgb(255, 199, 255),
-      rgb(95, 100, 98),
-      rgba(28, 130, 231, 0.479),
-      rgb(76, 95, 76)
+      rgba(255, 0, 0, 0.322),
+      rgb(0, 207, 235),
+      rgba(0, 102, 255, 0.479),
+      rgba(255, 174, 0, 0.295)
     );
-    opacity: 0.50;
-    backdrop-filter: blur(10px);
+    opacity: 0.75;
+    backdrop-filter: blur(15px);
   }
-  
+
+  dialog {
+    align-self: center;
+    justify-content: center;
+    justify-items: center;
+    margin: auto;
+    border: 2px solid rgb(0, 27, 102);
+  }
+
+
+  dialog {
+    width: clamp(200px, 40%, 500px);
+  }
+
+  form {
+    width: 80%;
+    padding: 1rem;
+  }
+
+  legend {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+  }
+
+.form-row {
+    display: flex;
+    margin: 1rem 0;
+    align-items: center;
+}
+
+label {
+    width: 70px;
+    letter-spacing: 0.1rem;
+}
+
+.criteria {
+    font-weight: bold;
+}
+
+input {
+    flex:1;
+    padding: 0.25rem;
+    border: 1px solid #928282;
+    border-radius: 4px;
+    width:60%;
+}
+
+.radio {
+    display: flex;
+    gap: 20px;
+    flex:1;
+    justify-content: space-around;
+}
+
+.radio label {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items:center;
+
+}
+
+.button {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+
+#cancel, #add {
+    flex:1;
+    height: 45px;
+
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: darkred;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+input:focus {
+    outline: none;
+    box-shadow: 2px 2px 3px var(--third-color);
+    border: 2px solid darkblue;
+}
