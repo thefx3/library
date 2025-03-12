@@ -156,9 +156,15 @@ input:focus {
   }
 
   .toggle[data-read="Read"] {
-    background-color: darkgreen;
+    background-color: rgba(0, 100, 0, 0.671);
     transition: all 0.7s;
     color:white;
+  }
+
+
+  .toggle[data-read="Not read yet"] {
+    background-color: rgb(224, 224, 224);
+    transition: all 0.7s;
   }
 
   .toggle[data-read="Not read yet"]:hover {

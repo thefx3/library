@@ -80,7 +80,7 @@ function displayLibrary(array) {  //Grid
     library.style.padding = "10px";
     library.style.textAlign = "center";
     library.style.alignContent = "center";
-    library.style.backgroundColor = "darkred";
+    library.style.backgroundColor = "black";
     library.style.color = "white";
     library.style.height = "50px";
     container.appendChild(library);
@@ -112,7 +112,7 @@ function displayLibrary(array) {  //Grid
       header.style.padding = "10px";
       header.style.textAlign = "center";
       header.style.alignContent = "center";
-      header.style.backgroundColor = "darkblue";
+      header.style.backgroundColor = "darkgreen";
       header.style.color = "white";
       container.appendChild(header);
       
