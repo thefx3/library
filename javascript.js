@@ -39,7 +39,13 @@ addBookToLibrary("Millenium", "Ghandi", 2000, "Not read yet");
 
 
 function createGrid (height, width){
-  container.style.gridTemplateColumns = `repeat(${width}, 1fr)`;
+
+  let colWidth = new Array(width).fill("auto");
+  colWidth[width-1] = "minmax(0,70px)"; //LAST COLUMN MAX WIDTH
+
+  container.style.gridTemplateColumns = colWidth.join(" "); 
+
+  //container.style.gridTemplateColumns = `repeat(${width}, 1fr)`;
   // container.style.gridTemplateRows = `repeat(${height}, 1fr)`;
 
   let rowHeights = new Array(height).fill("auto");
@@ -74,10 +80,10 @@ function displayLibrary(array) {  //Grid
     library.style.gridColumn = "1 / span 4";
 
     const newbook = document.createElement("button");
-    newbook.classList.add(".newbook");
+    newbook.classList.add("newbook");
     newbook.textContent = "Add New Book";
     newbook.style.fontWeight = "bold";
-    newbook.style.gridColumn = "5 / span 1";
+    newbook.style.gridColumn = "5 / span 2";
     newbook.style.gridRow = "1";
 
     newbook.style.height = "50px";
@@ -88,10 +94,11 @@ function displayLibrary(array) {  //Grid
     });
 
 
-    const headers = ["Title", "Author", "Pages", "Read", "ID"];
+    const headers = ["Title", "Author", "Pages", "Read", "ID", "x"];
     headers.forEach(headerText => {
       const header = document.createElement("div");
       header.textContent = headerText;
+      header.style.height = "50px";
       header.style.fontWeight = "bold";
       header.style.border = "1px solid black";
       header.style.padding = "10px";
@@ -100,21 +107,21 @@ function displayLibrary(array) {  //Grid
       header.style.backgroundColor = "darkblue";
       header.style.color = "white";
       container.appendChild(header);
-      header.style.height = "50px";
+      
     })
    
-
-    
    
     myLibrary.forEach(book => {
       Object.entries(book).forEach(([key,value]) => {
 
-        if (typeof value === "function") return;
+        if (typeof value === "function") return; //SKIP THIS.INFO
 
         const cell = document.createElement("div");
 
-        if (key === "id") { cell.classList.add("id-cell"); }
-
+        if (key === "id") { //CLASS FOR ID CELL
+          cell.classList.add("id-cell"); 
+        } 
+         
         cell.textContent = value;
         cell.style.border = "1px solid black";
         cell.style.padding = "10px";
@@ -122,12 +129,33 @@ function displayLibrary(array) {  //Grid
         cell.style.alignContent = "center";
         container.appendChild(cell);
 
-        
       });
+
+      const remove = document.createElement("button");
+      remove.classList.add("remove");
+      remove.style.width = "70px";
+      remove.textContent = "Remove";
+      remove.style.fontWeight = "bold";
+      container.appendChild(remove);
+
     });
 
-    createGrid(myLibrary.length + 2, 5);
-  }
+    createGrid(myLibrary.length + 2, 6);
+}
+
+// REMOVE BUTTON
+const remove = document.querySelectorAll('.remove');
+remove.forEach(button => {
+  button.addEventListener('click', (event) => {
+    const id = event.target.previousElementSibling;
+
+   const index = myLibrary.findIndex(book => book.id === id.textContent);
+
+   myLibrary.splice(index,1);
+
+  });
+})
+
 
 const dialog = document.querySelector('dialog');
 const cancelBtn = dialog.querySelector("#cancel");

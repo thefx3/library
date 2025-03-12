@@ -122,3 +122,25 @@ input:focus {
     padding: 5px;
     border-radius: 5px;
   }
+
+
+/* STYLING REMOVE BUTTON */
+  .remove {
+    background-image: linear-gradient(
+        to right, darkblue 0%, #b31217  90%, darkred  100%
+    )}
+  .remove {
+     text-align: center;
+     transition: 0.5s;
+     background-size: 200% auto;
+     color: white;            
+     border-radius: 2px;
+   }
+
+   .remove:hover {
+     background-position: right center; /* change the direction of the change here */
+     color: #fff;
+     text-decoration: none;
+     transform: scale(0.97);
+   }
+  
