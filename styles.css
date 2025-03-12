@@ -41,12 +41,6 @@
     transition: all 0.5s allow-discrete;
   }
 
-  @starting-style {
-    dialog:open {
-      opacity: 0;
-      transform: scaleY(0);
-    }
-  }
 
   dialog::backdrop {
     transition: all 0.5s allow-discrete;
@@ -145,6 +139,32 @@ input:focus {
     padding: 5px;
     border-radius: 5px;
   }
+
+  .toggle {
+    border : 1px solid black;
+    padding : 10px;
+    text-align : center;
+    align-content : center;
+    font-weight : bold;
+    width: 100%;
+  }
+
+  .toggle:hover {
+    border : 1px solid darkgreen;
+     transform: scale(0.97);
+
+  }
+
+  .toggle[data-read="Read"] {
+    background-color: darkgreen;
+    transition: all 0.7s;
+    color:white;
+  }
+
+  .toggle[data-read="Not read yet"]:hover {
+    background-color: 75% darkgreen;
+  }
+
 
 
 /* STYLING REMOVE BUTTON */

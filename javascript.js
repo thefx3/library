@@ -25,6 +25,10 @@ function Book(title, author, pages, read) {
     }
   }
 
+  Book.prototype.toggleReadStatus = function() {
+    this.read = this.read === "Read" ? "Not read yet" : "Read";
+  };
+
 function addBookToLibrary (title, author, pages, read) {
   const book = new Book(title, author, pages, read);
   myLibrary.push(book);
@@ -43,6 +47,7 @@ function createGrid (height, width){
   let colWidth = new Array(width).fill("auto");
   colWidth[width-1] = "minmax(0,70px)"; //LAST COLUMN MAX WIDTH
   colWidth[width-2] = "minmax(0, 150px)"; //ID COLUMN MAX WIDTH
+  colWidth[width-3] = "minmax(0, 100px)"; //ID COLUMN MAX WIDTH
 
   container.style.gridTemplateColumns = colWidth.join(" "); 
 
@@ -55,6 +60,8 @@ function createGrid (height, width){
 
   container.style.gridTemplateRows = rowHeights.join(" ");
 }
+
+
 
 function displayLibrary(array) {  //Grid
 
@@ -125,16 +132,35 @@ function displayLibrary(array) {  //Grid
 
         const cell = document.createElement("div");
 
+        if (key === "read"){
+
+          const toggleReadButton = document.createElement("button");
+          toggleReadButton.classList.add("toggle");
+          toggleReadButton.dataset.read = book.read;
+          toggleReadButton.textContent = book.read;
+          toggleReadButton.addEventListener('click', () => {
+            book.toggleReadStatus();
+            toggleReadButton.textContent = book.read;
+            toggleReadButton.dataset.read = book.read;
+          });
+          cell.appendChild(toggleReadButton);
+          bookRow.appendChild(cell);
+        }
+
         if (key === "id") { //CLASS FOR ID CELL
           cell.classList.add("id-cell"); 
-        } 
-         
+        }
+
+        if (key !=="read") {
+
         cell.textContent = value;
         cell.style.border = "1px solid black";
         cell.style.padding = "10px";
         cell.style.textAlign = "center";
         cell.style.alignContent = "center";
         bookRow.appendChild(cell);
+
+        }
 
       });
 
@@ -148,6 +174,8 @@ function displayLibrary(array) {  //Grid
       container.appendChild(bookRow);
 
     });
+
+
 
     const remove = document.querySelectorAll('.remove');
     remove.forEach(button => {
