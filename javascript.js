@@ -42,6 +42,7 @@ function createGrid (height, width){
 
   let colWidth = new Array(width).fill("auto");
   colWidth[width-1] = "minmax(0,70px)"; //LAST COLUMN MAX WIDTH
+  colWidth[width-2] = "minmax(0, 150px)"; //ID COLUMN MAX WIDTH
 
   container.style.gridTemplateColumns = colWidth.join(" "); 
 
@@ -112,6 +113,12 @@ function displayLibrary(array) {  //Grid
    
    
     myLibrary.forEach(book => {
+
+      const bookRow = document.createElement("div");
+      bookRow.classList.add("book-row");
+      bookRow.style.display = "contents";
+
+
       Object.entries(book).forEach(([key,value]) => {
 
         if (typeof value === "function") return; //SKIP THIS.INFO
@@ -127,7 +134,7 @@ function displayLibrary(array) {  //Grid
         cell.style.padding = "10px";
         cell.style.textAlign = "center";
         cell.style.alignContent = "center";
-        container.appendChild(cell);
+        bookRow.appendChild(cell);
 
       });
 
@@ -136,25 +143,34 @@ function displayLibrary(array) {  //Grid
       remove.style.width = "70px";
       remove.textContent = "Remove";
       remove.style.fontWeight = "bold";
-      container.appendChild(remove);
+      bookRow.appendChild(remove);
+
+      container.appendChild(bookRow);
 
     });
 
-    createGrid(myLibrary.length + 2, 6);
-}
-
-// REMOVE BUTTON
-const remove = document.querySelectorAll('.remove');
-remove.forEach(button => {
-  button.addEventListener('click', (event) => {
+    const remove = document.querySelectorAll('.remove');
+    remove.forEach(button => {
+    button.addEventListener('click', (event) => {
     const id = event.target.previousElementSibling;
+    const bookRow = event.target.closest(".book-row");
 
    const index = myLibrary.findIndex(book => book.id === id.textContent);
 
    myLibrary.splice(index,1);
+   
+   bookRow.remove();
 
   });
 })
+
+
+    createGrid(myLibrary.length + 2, 6);
+
+    
+}
+
+// REMOVE BUTTON
 
 
 const dialog = document.querySelector('dialog');
